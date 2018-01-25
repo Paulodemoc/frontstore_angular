@@ -1,0 +1,118 @@
+<!DOCTYPE>
+<html ng-app="frontStoreApp">
+
+<head>
+    <title>Front Store</title>
+    <style type="text/css">
+        md-input-container.grande {
+            width: 98%;
+        }
+
+        #registerForm {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+<link href="css/app.css" rel="stylesheet">
+
+<body layout="column " ng-controller="FrontStoreCtrl" ng-init="initializeFacebook()">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark top">
+        <a class="navbar-brand" href="home">Front Store</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="facebookLogin" ng-hide="idUsuario">
+                <fb:login-button scope="public_profile,email"></fb:login-button>
+            </form>
+            <div class="nav-item dropdown my-2 my-lg-0" style="color:white;" ng-show="idUsuario">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{nomeUsuario}}</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownUser">
+                    <a class="dropdown-item" href="#" ng-click="logout()">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="album py-5 bg-light" ng-show="showProducts">
+        <div class="row">
+            <div class="col-md-4" ng-repeat="product in products" id="product-{{product.id}}">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" data-src="{{product.img}}" alt="{{product.name}}" style="width:200px; margin-left:30%; margin-top:1%; display: block;"
+                        src="{{product.img}}" data-holder-rendered="true">
+                    <div class="card-body">
+                        <p class="card-text">{{product.name}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" ng-click="showProduct(product)">View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-hide="showProducts">
+        <section class="jumbotron text-center" style="margin-bottom:0rem; padding:1rem;">
+            <div class="container">
+                <h1 class="jumbotron-heading">{{display.name}}</h1>
+            </div>
+        </section>
+        <div class="album py-5 bg-light">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" data-src="{{display.img}}" alt="{{display.name}}" style="width:300px; margin-left:40%; display: block;"
+                            src="{{display.img}}" data-holder-rendered="true">
+                        <div class="card-body">
+                            <p class="card-text">{{display.name}}</p>
+                            <p class="card-text">{{display.info}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" ng-click="closeProduct()">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="fb-root"></div>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src =
+                    'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=1795623014075486&autoLogAppEvents=1';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="scripts/angular/angular.min.js "></script>
+<script src="scripts/angular-material-data-table/dist/md-data-table.min.js "></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js "></script>
+<script src="js/popper.min.js "></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+<script src="controllers/controller.js "></script>
+<script src="js/app.js "></script>
+
+</html>

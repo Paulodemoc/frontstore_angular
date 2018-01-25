@@ -1,0 +1,25 @@
+{
+    "name": "master",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "angular": "^1.5.8",
+        "body-parser": "^1.15.2",
+        "chai": "^3.5.0",
+        "express": "^4.14.0",
+        "mocha": "^3.0.2",
+        "mongodb": "^2.2.8",
+        "request": "^2.74.0"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Paulodemoc/frontstore_angular.git"
+    },
+    "author": "Paulo Neves",
+    "license": "ISC"
+}
